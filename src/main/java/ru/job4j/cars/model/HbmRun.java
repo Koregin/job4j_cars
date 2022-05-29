@@ -1,13 +1,27 @@
 package ru.job4j.cars.model;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.job4j.cars.repository.AdRepository;
+
+import java.util.List;
 
 public class HbmRun {
     public static void main(String[] args) {
+        AdRepository store = new AdRepository();
+        User user = new User();
+        user.setId(1);
+        Brand brand = new Brand();
+        brand.setId(1);
+        List<Item> lastItems = store.findLastDayItems(user);
+        List<Item> lastItems2 = store.findItemsWithPhoto(user);
+        List<Item> lastItems3 = store.findItemsByBrand(user, brand);
+
+        System.out.println("Поиск объявлений за последний день");
+        lastItems.forEach(System.out::println);
+        System.out.println("Поиск объявлений с фото");
+        lastItems2.forEach(System.out::println);
+        System.out.println("Поиск объявлений по определенной марке");
+        lastItems3.forEach(System.out::println);
+        /*
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
@@ -29,5 +43,6 @@ public class HbmRun {
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
         }
+        */
     }
 }

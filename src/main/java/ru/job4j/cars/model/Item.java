@@ -3,6 +3,7 @@ package ru.job4j.cars.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -100,4 +101,17 @@ public class Item {
         this.photo = photo;
     }
 
+    @Override
+    public String toString() {
+        return "Item{"
+                + "id=" + id
+                + ", description='" + description + '\''
+                + ", created=" + created
+                + ", brand=" + brand
+                + ", body=" + body
+                + ", soldStatus=" + soldStatus
+                + ", user=" + user
+                + ", photo=" + Arrays.toString(photo)
+                + '}';
+    }
 }
