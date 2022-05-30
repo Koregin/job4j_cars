@@ -1,11 +1,10 @@
 package ru.job4j.cars.model;
 
-import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 
 @Entity
 @Table(name = "items")
@@ -16,9 +15,7 @@ public class Item {
 
     private String description;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Date created;
+    private LocalDateTime created;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
@@ -54,11 +51,11 @@ public class Item {
         this.description = description;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 

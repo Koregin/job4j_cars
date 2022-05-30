@@ -11,8 +11,6 @@ import ru.job4j.cars.model.Item;
 import ru.job4j.cars.model.User;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 
@@ -26,14 +24,11 @@ public class AdRepository {
     }
 
     public List<Item> findLastDayItems(User user) {
-        LocalDateTime currentLocalDateTime = LocalDateTime.now();
-        Date currentDate = Date.from(currentLocalDateTime.atZone(ZoneId.systemDefault()).toInstant());
-        Date minusDay = Date.from(currentLocalDateTime.minusDays(1).atZone(ZoneId.systemDefault()).toInstant());
         return this.tx(session -> session.createQuery("select i from Item i where i.user = :fUser "
-                        + "and i.created between :dStart and :dEnd", Item.class)
+                        + "and DATE(i.created) = :fDate", Item.class)
                 .setParameter("fUser", user)
-                .setParameter("dStart", minusDay)
-                .setParameter("dEnd", currentDate).list());
+                .setParameter("fDate", LocalDateTime.now().toLocalDate())
+                .list());
     }
 
     public List<Item> findItemsWithPhoto(User user) {
