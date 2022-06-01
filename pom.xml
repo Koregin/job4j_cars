@@ -89,6 +89,10 @@
       <version>1.4.200</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.thymeleaf.extras</groupId>
+      <artifactId>thymeleaf-extras-java8time</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

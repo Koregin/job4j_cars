@@ -1,12 +1,9 @@
 package ru.job4j.cars.model;
 
-import ru.job4j.cars.repository.AdRepository;
-
-import java.util.List;
-
 public class HbmRun {
     public static void main(String[] args) {
-        AdRepository store = new AdRepository();
+        /*
+        AdsRepository store = new AdsRepository();
         User user = new User();
         user.setId(1);
         Brand brand = new Brand();
@@ -21,7 +18,7 @@ public class HbmRun {
         lastItems2.forEach(System.out::println);
         System.out.println("Поиск объявлений по определенной марке");
         lastItems3.forEach(System.out::println);
-        /*
+
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {

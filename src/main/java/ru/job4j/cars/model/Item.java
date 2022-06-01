@@ -1,7 +1,5 @@
 package ru.job4j.cars.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -11,11 +9,14 @@ import java.util.Arrays;
 public class Item {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    private String name;
 
     private String description;
 
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now().withNano(0);
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
@@ -41,6 +42,14 @@ public class Item {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
